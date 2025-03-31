@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 
 import net.yallerco.mapeobasico.dto.EmpleadoDto;
 import net.yallerco.mapeobasico.dto.EstudianteDto;
+import net.yallerco.mapeobasico.dto.ObreroDto;
 import net.yallerco.mapeobasico.dto.PersonDto;
 import net.yallerco.mapeobasico.dto.PersonaDto;
 import net.yallerco.mapeobasico.mapper.EmpleadoMapper;
 import net.yallerco.mapeobasico.mapper.EstudianteMapper;
+import net.yallerco.mapeobasico.mapper.ObreroMapper;
 import net.yallerco.mapeobasico.mapper.PersonMapper;
 import net.yallerco.mapeobasico.mapper.PersonaMapper;
 import net.yallerco.mapeobasico.persistence.dao.PersonaRepository;
@@ -35,6 +37,9 @@ public class PersonaServiceImpl implements PersonaService{
 	
 	@Autowired
     private EstudianteMapper estudianteMapper;
+	
+	@Autowired
+    private ObreroMapper obreroMapper;
 
 	//********* listar ************************
 	@Override
@@ -65,11 +70,20 @@ public class PersonaServiceImpl implements PersonaService{
 				.collect(Collectors.toList());
 	}
 	
+	@Override
+	public List<ObreroDto> listarObrero() {
+		return personaRepository.findAll().stream()
+				.map(obreroMapper::personaToObreroDto)
+				.collect(Collectors.toList());
+	}
+	
 	//crear
 	@Override
 	public Persona crear(Persona persona) {
 		return personaRepository.save(persona);
 	}
+
+	
 
 	
 

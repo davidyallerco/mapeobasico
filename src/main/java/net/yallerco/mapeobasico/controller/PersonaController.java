@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import net.yallerco.mapeobasico.service.PersonaService;
 import net.yallerco.mapeobasico.dto.EmpleadoDto;
 import net.yallerco.mapeobasico.dto.EstudianteDto;
+import net.yallerco.mapeobasico.dto.ObreroDto;
 import net.yallerco.mapeobasico.dto.PersonDto;
 import net.yallerco.mapeobasico.dto.PersonaDto;
 import net.yallerco.mapeobasico.persistence.entity.Persona;
@@ -44,6 +45,11 @@ public class PersonaController {
 	@GetMapping("/listar-minimos-campos")
 	public List<EstudianteDto> listarEstudiante() {
 		return personaService.listarEstudiante();
+	}
+	
+	@GetMapping("/listar-hacer-cambio-despues-de-mapear")
+	public List<ObreroDto> listarValorSeteadoDespuesDeMapear() {
+		return personaService.listarObrero();
 	}
 
 	// ************** Create *********************
